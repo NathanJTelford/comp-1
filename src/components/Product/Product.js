@@ -1,11 +1,14 @@
 import React from 'react';
 
-const Product = () => {
+const Product = (props) => {
 
+
+    const array = this.state.props;
+    const products = array.map((product, i) => { return (<div key={i} >{product.name}</div>) })
 
     return (
         <div>
-            Product
+           {props.products}
         </div>
     )
 }

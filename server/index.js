@@ -2,7 +2,6 @@ const Express = require('express');
 // const Cors = require ('cors');
 const Massive = require('massive');
 require('dotenv').config();
-const CTRL = require('./Controller')
 
 const app = Express();
 
@@ -12,12 +11,18 @@ app.use(Express.json());
 
 const { CONNECTION_STRING } = process.env;
 
+app.post(`/api/product`,(req,res)=>{const db = req.app.get('db');
+    db.editProduct(req.body.description,req.body.price,req.body.image).then(()=>
+    {    res.sendStatus(200)}
+    ).catch(err=>{console.log(err)})
+})
 
-// app.get('/',(req,res=>{const db = req.app.get('db');
-//     db.product().then(product=>{
-//         res.send(product);
-//     })
-// }))
+
+app.get(`/api/products`,(req,res)=>{const db = req.app.get('db');
+    db.product().then(product=>{
+        res.status(200).send(product);
+    }).catch(err=>{console.log(err)})
+})
 
 Massive(CONNECTION_STRING).then(dbInstance => {
     app.set('db', dbInstance)
