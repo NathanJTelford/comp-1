@@ -32,12 +32,15 @@
 
 
 .header {
+  display: flex;
+  justify-content: flex-start;
+
   background-color: #AB2A19;
   position: fixed;
   top: 0px;
   left:0px;
   right:0px;
-  padding: 40px;
+  padding: 8px;
 
 }
 
@@ -72,8 +75,9 @@
   border-radius: 3px;
 }
 
-.srcPic{
+.logo{
   width:30px;
+  margin-left:30px;
 }
 
 button{
@@ -91,3 +95,16 @@ button{
 input{
   border-radius: 3px;
 }
+
+.headertext{
+ margin-top:5px;
+ margin-left:19px;
+ color: #FFFFFF;
+ font-size: 22px;
+}
+/* 
+.defaultPic{
+  width:20px;
+  height:20px;
+  border: black 1px solid;
+} */

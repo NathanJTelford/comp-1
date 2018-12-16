@@ -13,11 +13,15 @@ class App extends Component {
       image: '',
       description: '',
       price: 0,
-      products: []
+      products: [],
+      editProd:[]
 
 
     }
-    this.imageHandler = this.imageHandler.bind(this)
+    this.imageHandler = this.imageHandler.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+    this.postHandler = this.postHandler.bind(this);
+    this.handleEdit = this.handleEdit.bind(this)
   }
 
 
@@ -29,6 +33,40 @@ class App extends Component {
       })
       console.log(this.state.products)
     })
+  }
+  postHandler() {
+    let product = {
+      image: this.state.image,
+      description: this.state.description,
+      price: this.state.price
+    }
+
+    Axios.post(`/api/product`, product).then(res=>{
+      let arr = res.data;
+      this.setState({
+        products:arr
+      })
+    })
+    // console.log(' clickHandeler hit')
+  }
+
+  handleDelete(id){
+    Axios.delete(`/api/product/${id}`).then((res)=>{
+      let arr = res.data;
+      this.setState({
+        products:arr
+      })
+    })
+  }
+
+  handleEdit(id){
+    let edit = this.state.editProd;
+    Axios.put(`/api/product/${id}`,edit).then(res=>{
+      this.setState({
+        Products:res.data
+      })
+    })
+
   }
 
 
@@ -51,25 +89,20 @@ class App extends Component {
     })
   }
 
+  toggleButton(){}
 
-  postHandler() {
-    let product = {
-      image: this.state.image,
-      description: this.state.description,
-      price: this.state.price
-    }
 
-    Axios.post(`/api/product`, product)
-    // console.log(' clickHandelr hit')
-  }
 
-  handleCancel(){
+  handleCancel() {
     this.setState({
-      image:'',
-      description:'',
-      price:0
+      image: '',
+      description: '',
+      price: 0
     })
   }
+  // testProps(){
+  //   console.log('hit from product')
+  // }
 
 
 
@@ -80,12 +113,13 @@ class App extends Component {
 
         <div className='header'>
           <Header />
+          <h2 className='headertext'>SHELFIE</h2>
         </div>
 
         <div className='flex'>
 
           <div className='dash'>
-            <Dashboard products={this.state.products}>
+            <Dashboard products={this.state.products} handleDelete={this.handleDelete}>
               <div className='products'>
 
               </div>
@@ -95,6 +129,9 @@ class App extends Component {
           <div className="form">
             <Form />
             <ul>
+              <div>
+                {/* <img src='https://i.imgflip.com/1mjhuz.jpg' alt='' className='default pic'/> */}
+              </div>
               <label>
                 Image:URL
               <li><input onChange={(e) => this.imageHandler(e.target.value)} value={this.state.image} /></li>
@@ -108,8 +145,8 @@ class App extends Component {
               <li><input onChange={(e) => this.priceHandler(e.target.value)} value={this.state.price} /></li>
               </label>
               <div className='buttons'>
-              <button onClick={() => this.handleCancel()}>Cancel</button>
-              <button onClick={() => this.postHandler()}>Add Inventory</button>
+                <button onClick={() => this.handleCancel()}>Cancel</button>
+                <button onClick={() => this.postHandler()}>Add Inventory</button>
               </div>
             </ul>
 

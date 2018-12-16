@@ -12,8 +12,8 @@ app.use(Express.json());
 const { CONNECTION_STRING } = process.env;
 
 app.post(`/api/product`,(req,res)=>{const db = req.app.get('db');
-    db.editProduct(req.body.description,req.body.price,req.body.image).then(()=>
-    {    res.sendStatus(200)}
+    db.CreateProduct(req.body.description,req.body.price,req.body.image).then(product=>
+    { res.status(200).send(product)}
     ).catch(err=>{console.log(err)})
 })
 
@@ -22,6 +22,16 @@ app.get(`/api/products`,(req,res)=>{const db = req.app.get('db');
     db.product().then(product=>{
         res.status(200).send(product);
     }).catch(err=>{console.log(err)})
+})
+
+app.delete(`/api/product/:id`,(req,res)=>{const db = req.app.get('db');
+    db.deleteProduct(req.params.id).then(product=>{res.status(200).send(product);
+    }).catch(err=>{console.log(err)})
+})
+
+app.put(`/api/product/:id`,(req,res)=>{const db = req.app.get('db');
+db.editProduct(req.body.id).then(product=>{app.status(200).send(product);
+}).catch(err=>{console.log(err)})
 })
 
 Massive(CONNECTION_STRING).then(dbInstance => {

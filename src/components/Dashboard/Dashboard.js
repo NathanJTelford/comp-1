@@ -11,11 +11,11 @@ export default class Dash extends Component{
 
 
     render(){
-        console.log(this.props, 'dash props')
+        // console.log(this.props.handleDelete, 'dash props')
         return(
             <div>
             Dashboard
-            <Product products={this.props.products}/>
+            <Product products={this.props.products} handleDelete={this.props.handleDelete}/>
             </div>
         )
     }
