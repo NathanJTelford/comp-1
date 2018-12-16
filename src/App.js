@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Product from './components/Product/Product';
+// import Product from './components/Product/Product';
 import Header from './components/Header/Header';
 import Dashboard from './components/Dashboard/Dashboard';
 import Form from './components/Form/Form';
@@ -63,6 +63,14 @@ class App extends Component {
     // console.log(' clickHandelr hit')
   }
 
+  handleCancel(){
+    this.setState({
+      image:'',
+      description:'',
+      price:0
+    })
+  }
+
 
 
 
@@ -76,35 +84,36 @@ class App extends Component {
 
         <div className='flex'>
 
-        <div className='dash'>
-          <Dashboard>
-            <div className='products'>
-              <Product products={this.state.products} />
-            </div>
-          </Dashboard>
-        </div>
+          <div className='dash'>
+            <Dashboard products={this.state.products}>
+              <div className='products'>
 
-        <div className="form">
-          <Form />
-          <ul>
-            <label>
-              Image:URL
-              <li><input onChange={(e) => this.imageHandler(e.target.value)} /></li>
-            </label>
-            <label>
-              Product Info
-              <li><input onChange={(e) => this.productHandler(e.target.value)} /></li>
-            </label>
-            <label>
-              Price
-              <li><input onChange={(e) => this.priceHandler(e.target.value)} /></li>
-            </label>
+              </div>
+            </Dashboard>
+          </div>
+          {/* <Product products={this.state.products} /> */}
+          <div className="form">
+            <Form />
+            <ul>
+              <label>
+                Image:URL
+              <li><input onChange={(e) => this.imageHandler(e.target.value)} value={this.state.image} /></li>
+              </label>
+              <label>
+                Product Info
+              <li><input onChange={(e) => this.productHandler(e.target.value)} value={this.state.description} /></li>
+              </label>
+              <label>
+                Price
+              <li><input onChange={(e) => this.priceHandler(e.target.value)} value={this.state.price} /></li>
+              </label>
+              <div className='buttons'>
+              <button onClick={() => this.handleCancel()}>Cancel</button>
+              <button onClick={() => this.postHandler()}>Add Inventory</button>
+              </div>
+            </ul>
 
-            <button>Cancel</button>
-            <button onClick={() => this.postHandler()}>Add Inventory</button>
-          </ul>
-
-        </div>
+          </div>
         </div>
 
 

@@ -1,21 +1,6 @@
 .App {
-  text-align: center;
   background-color: skyblue;
-  position: fixed;
-  bottom:0;
-  top:0;
-  right:0;
-  left:0;
-}
-
-.header{
-  background-color: aquamarine;
-  display:flex;
-  flex-direction:column;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-content: stretch;
-  align-items: stretch;
+  display: flex;
 
 }
 
@@ -26,7 +11,8 @@
 	flex-wrap: wrap;
 	justify-content: space-around;
 	align-items: center;
-	align-content: space-around;
+  align-content: space-around;
+  margin:155px 40px;
 }
 
 .products{
@@ -34,24 +20,25 @@
 }
 
 .form{
-  background-color: red;
-  display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: space-around;
-	align-items: center;
-	align-content: space-around;
+  background-color:#3AD886;
+  position: fixed;
+  right: 100px;
+  top:250px;
+  border: 1px black solid;
+  padding: 40px;
+  width:400px;
+
 }
 
 
 .header {
-  background-color: #282c34;
-  display: flex;
-	flex-direction:column;
-	flex-wrap: wrap;
-	justify-content: space-around;
-	align-items: center;
-	align-content: space-around;
+  background-color: #AB2A19;
+  position: fixed;
+  top: 0px;
+  left:0px;
+  right:0px;
+  padding: 40px;
+
 }
 
 
@@ -65,3 +52,42 @@
 
 }
 
+.prodDiv{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #D34735;
+  height: 310px;
+  width:600px;
+  border: 1px solid black;
+  border-radius: 7px;
+  margin: 20px;
+  padding:10px;
+
+}
+
+.pics{
+  width:22%;
+  border: 1px black solid;
+  border-radius: 3px;
+}
+
+.srcPic{
+  width:30px;
+}
+
+button{
+  background-color: #ED6B5A;
+  border-radius: 6px;
+  padding: 6px;
+}
+
+.buttons{
+  display:flex;
+  justify-content: space-between;
+  padding-top: 22px;
+}
+
+input{
+  border-radius: 3px;
+}

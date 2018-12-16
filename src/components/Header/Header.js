@@ -1,4 +1,5 @@
 import React from 'react';
+import Pic from './../../images/shelfie_icon.png';
 
 
 const Header = () => {
@@ -7,7 +8,7 @@ const Header = () => {
 
     return (
         <div>
-            Header
+           <img src={Pic} className='srcPic'/>
         </div>
     )
 }
